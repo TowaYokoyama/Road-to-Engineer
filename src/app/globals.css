@@ -1,0 +1,118 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+:root {
+  --background: #0a0e1a;
+  --foreground: #e4e7eb;
+}
+
+html, body, #__next {
+  height: 100%;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
+  overflow-x: hidden;
+}
+
+/* カスタムスクロールバー */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a0e1a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1a2332;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #2a3342;
+}
+
+/* グローバルアニメーション */
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.gradient-text {
+  background: linear-gradient(90deg, #00d4ff, #00ff9f, #a855f7);
+  background-size: 200% auto;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient-shift 3s ease infinite;
+}
+
+/* ターミナル風ボックス */
+.terminal-box {
+  background: linear-gradient(145deg, rgba(26, 35, 50, 0.5), rgba(10, 14, 26, 0.8));
+  border: 1px solid rgba(0, 212, 255, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+.terminal-box::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(145deg, rgba(0, 212, 255, 0.2), rgba(168, 85, 247, 0.1));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* コードブロックスタイル */
+pre {
+  background: rgba(10, 14, 26, 0.8) !important;
+  border: 1px solid rgba(0, 212, 255, 0.2);
+  border-radius: 8px;
+  padding: 1rem;
+  overflow-x: auto;
+}
+
+code {
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
+}
+
+/* マークダウンスタイル */
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3 {
+  color: #00d4ff;
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.markdown-body p {
+  margin-bottom: 1rem;
+  line-height: 1.7;
+}
+
+.markdown-body a {
+  color: #00ff9f;
+  text-decoration: underline;
+}
+
+.markdown-body ul,
+.markdown-body ol {
+  margin-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+/* グロー効果 */
+.glow-effect {
+  box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+}

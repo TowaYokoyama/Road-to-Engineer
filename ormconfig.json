@@ -1,0 +1,10 @@
+{
+  "type": "postgres",
+  "url": "${DATABASE_URL}",
+  "ssl": false,
+  "synchronize": true,
+  "logging": false,
+  "entities": [
+    "src/entities/**/*.ts"
+  ]
+}
