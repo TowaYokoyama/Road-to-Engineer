@@ -4,8 +4,9 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import Card from "@/components/Card";
 import Button from "@/components/Button";
-import { Input, Textarea, Select } from "@/components/Input";
+
 import Badge from "@/components/Badge";
+import { Input, Select, Textarea } from "@/components/Input";
 
 const CATEGORIES = [
   "アルゴリズム",

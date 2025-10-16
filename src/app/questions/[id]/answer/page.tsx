@@ -4,9 +4,10 @@ import { useRouter, useParams } from "next/navigation";
 import { useState, useEffect } from "react";
 import Card from "@/components/Card";
 import Button from "@/components/Button";
-import { Input, Textarea, Select } from "@/components/Input";
+
 import Badge from "@/components/Badge";
 import Link from "next/link";
+import { Select, Textarea } from "@/components/Input";
 
 const PROGRAMMING_LANGUAGES = [
   "javascript",

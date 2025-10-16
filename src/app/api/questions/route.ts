@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { getDataSource } from "@/lib/db";
 import { Question } from "@/entities/Question";
 
+
 export const dynamic = "force-dynamic";
 
 export async function GET(req: NextRequest) {

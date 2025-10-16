@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { ReactNode, CSSProperties } from 'react';
 import classNames from 'classnames';
 
 interface CardProps {
@@ -7,9 +7,10 @@ interface CardProps {
   hover?: boolean;
   glow?: boolean;
   onClick?: () => void;
+  style?: CSSProperties;
 }
 
-export default function Card({ children, className, hover = false, glow = false, onClick }: CardProps) {
+export default function Card({ children, className, hover = false, glow = false, onClick, style }: CardProps) {
   return (
     <div
       className={classNames(
@@ -21,6 +22,7 @@ export default function Card({ children, className, hover = false, glow = false,
         className
       )}
       onClick={onClick}
+      style={style}
     >
       {children}
     </div>

@@ -1,10 +1,7 @@
 import "reflect-metadata";
 import { DataSource } from "typeorm";
-import { Question } from "@/entities/Question";
-import { Answer } from "@/entities/Answer";
-import { Review } from "@/entities/Review";
-import { TechNote } from "@/entities/TechNote";
-import { GithubRepo } from "@/entities/GithubRepo";
+import { Answer, GithubRepo, Question, Review, TechNote } from "../entities";
+
 
 const isProd = process.env.NODE_ENV === "production";
 
