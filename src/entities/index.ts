@@ -4,4 +4,6 @@ export { Answer } from "./Answer";
 export { Review } from "./Review";
 export { TechNote } from "./TechNote";
 export { GithubRepo } from "./GithubRepo";
+export { TechStack } from "./TechStack";
+export { TechKnowledge } from "./TechKnowledge";
 

@@ -15,10 +15,15 @@ export default function HomePage() {
         <p className="text-xl text-terminal-muted max-w-2xl mx-auto leading-relaxed animate-slide-up" style={{ animationDelay: '0.2s' }}>
           技術面接の問題を記録し、回答を管理し、学習の軌跡をポートフォリオとして構築する
         </p>
-        <div className="flex gap-4 justify-center animate-slide-up" style={{ animationDelay: '0.3s' }}>
+        <div className="flex flex-wrap gap-4 justify-center animate-slide-up" style={{ animationDelay: '0.3s' }}>
           <Link href="/questions/new">
             <button className="px-6 py-3 rounded-lg bg-gradient-to-r from-terminal-accent to-terminal-purple text-white font-medium hover:shadow-lg hover:shadow-terminal-accent/30 transition-all duration-300">
               問題を作成 →
+            </button>
+          </Link>
+          <Link href="/portfolio/tech-stack">
+            <button className="px-6 py-3 rounded-lg bg-gradient-to-r from-terminal-success to-terminal-accent text-white font-medium hover:shadow-lg hover:shadow-terminal-success/30 transition-all duration-300">
+              ⚙️ 技術スタック →
             </button>
           </Link>
           <Link href="/questions">
@@ -82,18 +87,21 @@ export default function HomePage() {
           </Card>
         </Link>
 
-        <Link href="/portfolio" className="block animate-slide-up" style={{ animationDelay: '0.7s' }}>
-          <Card hover className="p-6 h-full">
+        <Link href="/portfolio/tech-stack" className="block animate-slide-up" style={{ animationDelay: '0.7s' }}>
+          <Card hover className="p-6 h-full bg-gradient-to-br from-terminal-accent/5 to-terminal-purple/5 border-terminal-accent/30">
             <div className="space-y-4">
-              <div className="text-4xl">⚙️</div>
-              <h3 className="text-xl font-bold text-terminal-warning">技術スタック</h3>
+              <div className="flex items-center justify-between">
+                <div className="text-4xl">⚙️</div>
+                <span className="text-xs px-2 py-1 rounded-full bg-terminal-accent/20 text-terminal-accent font-bold">NEW</span>
+              </div>
+              <h3 className="text-xl font-bold text-terminal-accent">技術スタック深掘り</h3>
               <p className="text-sm text-terminal-muted leading-relaxed">
-                使用技術の選定理由、学んだこと、改善点を記録し、ポートフォリオとして公開。
+                習得した技術を登録して、知識ノートで体系的に深掘り。コンセプト、ベストプラクティス、トラブルシューティングを記録。
               </p>
               <div className="flex flex-wrap gap-2 pt-2">
-                <span className="text-xs px-2 py-1 rounded bg-terminal-border/50 text-terminal-text">技術選定理由</span>
-                <span className="text-xs px-2 py-1 rounded bg-terminal-border/50 text-terminal-text">学習記録</span>
-                <span className="text-xs px-2 py-1 rounded bg-terminal-border/50 text-terminal-text">改善案</span>
+                <span className="text-xs px-2 py-1 rounded bg-terminal-accent/20 text-terminal-accent">知識体系化</span>
+                <span className="text-xs px-2 py-1 rounded bg-terminal-accent/20 text-terminal-accent">習熟度管理</span>
+                <span className="text-xs px-2 py-1 rounded bg-terminal-accent/20 text-terminal-accent">6種類のノート</span>
               </div>
             </div>
           </Card>
