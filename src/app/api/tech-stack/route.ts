@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getDataSource } from "@/lib/db";
-import { TechStack } from "@/entities/TechStack";
 
 export const dynamic = "force-dynamic";
 
@@ -11,8 +10,9 @@ export async function GET(req: NextRequest) {
       return NextResponse.json({ techStacks: [], total: 0 });
     }
 
-    const ds = await getDataSource();
-    const repo = ds.getRepository(TechStack);
+  const ds = await getDataSource();
+  // avoid importing entity modules at top-level to prevent circular init during module evaluation
+  const repo = ds.getRepository("TechStack" as any);
     const url = new URL(req.url);
     
     const category = url.searchParams.get("category");
@@ -37,7 +37,7 @@ export async function GET(req: NextRequest) {
       ? items.filter((i) =>
           i.name.toLowerCase().includes(q) || 
           i.description?.toLowerCase().includes(q) ||
-          i.tags?.some(tag => tag.toLowerCase().includes(q))
+          i.tags?.some((tag: string) => tag.toLowerCase().includes(q))
         )
       : items;
     
@@ -56,8 +56,8 @@ export async function POST(req: NextRequest) {
     }
 
     const body = await req.json();
-    const ds = await getDataSource();
-    const repo = ds.getRepository(TechStack);
+  const ds = await getDataSource();
+  const repo = ds.getRepository("TechStack" as any);
     
     const entity = repo.create(body);
     const saved = await repo.save(entity);

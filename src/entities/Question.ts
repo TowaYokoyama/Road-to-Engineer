@@ -1,5 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany, CreateDateColumn, UpdateDateColumn } from "typeorm";
-import { Answer } from "./Answer";
+import type { Answer } from "./Answer";
 
 @Entity()
 export class Question {
@@ -24,7 +24,7 @@ export class Question {
   @Column({ nullable: true })
   source!: string | null;
 
-  @OneToMany(() => Answer, (answer) => answer.question, { cascade: true, onDelete: "CASCADE" })
+  @OneToMany(() => require("./Answer").Answer, (answer: any) => answer.question, { cascade: true, onDelete: "CASCADE" })
   answers!: Answer[];
 
   @CreateDateColumn()

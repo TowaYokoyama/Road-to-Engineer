@@ -1,12 +1,12 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, CreateDateColumn, UpdateDateColumn } from "typeorm";
-import { Answer } from "./Answer";
+import type { Answer } from "./Answer";
 
 @Entity()
 export class Review {
   @PrimaryGeneratedColumn("uuid")
   id!: string;
 
-  @ManyToOne(() => Answer, (answer) => answer.reviews, { onDelete: "CASCADE" })
+  @ManyToOne(() => require("./Answer").Answer, (answer: any) => answer.reviews, { onDelete: "CASCADE" })
   answer!: Answer;
 
   @Column({ type: "int", nullable: true })

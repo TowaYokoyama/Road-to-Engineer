@@ -1,5 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany, CreateDateColumn, UpdateDateColumn } from "typeorm";
-import { TechKnowledge } from "./TechKnowledge";
+import type { TechKnowledge } from "./TechKnowledge";
 
 @Entity()
 export class TechStack {
@@ -53,7 +53,7 @@ export class TechStack {
   alternatives!: string | null; // 他の選択肢との比較
 
   // 学習記録との関連
-  @OneToMany(() => TechKnowledge, (knowledge) => knowledge.techStack, { cascade: true })
+  @OneToMany(() => require("./TechKnowledge").TechKnowledge, (knowledge: any) => knowledge.techStack, { cascade: true })
   knowledgeNotes!: TechKnowledge[];
 
   @CreateDateColumn()

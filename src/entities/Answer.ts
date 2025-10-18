@@ -1,13 +1,13 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany, CreateDateColumn, UpdateDateColumn } from "typeorm";
-import { Question } from "./Question";
-import { Review } from "./Review";
+import type { Question } from "./Question";
+import type { Review } from "./Review";
 
 @Entity()
 export class Answer {
   @PrimaryGeneratedColumn("uuid")
   id!: string;
 
-  @ManyToOne(() => Question, (question) => question.answers, { onDelete: "CASCADE" })
+  @ManyToOne(() => require("./Question").Question, (question: any) => question.answers, { onDelete: "CASCADE" })
   question!: Question;
 
   @Column("text")
@@ -28,7 +28,7 @@ export class Answer {
   @Column({ type: "enum", enum: ["draft", "completed"], default: "draft" })
   status!: "draft" | "completed";
 
-  @OneToMany(() => Review, (review) => review.answer, { cascade: true, onDelete: "CASCADE" })
+  @OneToMany(() => require("./Review").Review, (review: any) => review.answer, { cascade: true, onDelete: "CASCADE" })
   reviews!: Review[];
 
   @CreateDateColumn()

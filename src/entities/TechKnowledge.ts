@@ -1,12 +1,12 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, CreateDateColumn, UpdateDateColumn } from "typeorm";
-import { TechStack } from "./TechStack";
+import type { TechStack } from "./TechStack";
 
 @Entity()
 export class TechKnowledge {
   @PrimaryGeneratedColumn("uuid")
   id!: string;
 
-  @ManyToOne(() => TechStack, (tech) => tech.knowledgeNotes, { onDelete: "CASCADE" })
+  @ManyToOne(() => require("./TechStack").TechStack, (tech: any) => tech.knowledgeNotes, { onDelete: "CASCADE" })
   techStack!: TechStack;
 
   @Column()

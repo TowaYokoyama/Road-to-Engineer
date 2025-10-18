@@ -2,7 +2,7 @@ import classNames from 'classnames';
 
 interface BadgeProps {
   children: React.ReactNode;
-  variant?: 'default' | 'primary' | 'success' | 'warning' | 'error' | 'purple' | 'pink' | 'ghost';
+  variant?: 'default' | 'primary' | 'success' | 'warning' | 'error' | 'purple' | 'pink' | 'ghost' | 'accent';
   size?: 'sm' | 'md';
   className?: string;
 }
@@ -11,6 +11,7 @@ export default function Badge({ children, variant = 'default', size = 'md', clas
   const variants = {
     default: 'bg-terminal-border text-terminal-accent border-terminal-accent/30',
     primary: 'bg-terminal-accent/10 text-terminal-accent border-terminal-accent/30',
+    accent: 'bg-terminal-accent/10 text-terminal-accent border-terminal-accent/30',
     success: 'bg-terminal-success/10 text-terminal-success border-terminal-success/30',
     warning: 'bg-terminal-warning/10 text-terminal-warning border-terminal-warning/30',
     error: 'bg-terminal-error/10 text-terminal-error border-terminal-error/30',

@@ -1,7 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getDataSource } from "@/lib/db";
-import { TechKnowledge } from "@/entities/TechKnowledge";
-import { TechStack } from "@/entities/TechStack";
 
 
 export const dynamic = "force-dynamic";
@@ -11,8 +9,8 @@ export async function GET(
   { params }: { params: { id: string } }
 ) {
   try {
-    const ds = await getDataSource();
-    const repo = ds.getRepository(TechKnowledge);
+  const ds = await getDataSource();
+  const repo = ds.getRepository("TechKnowledge" as any);
     const url = new URL(req.url);
     const type = url.searchParams.get("type");
 
@@ -39,9 +37,9 @@ export async function POST(
   { params }: { params: { id: string } }
 ) {
   try {
-    const ds = await getDataSource();
-    const techStackRepo = ds.getRepository(TechStack);
-    const knowledgeRepo = ds.getRepository(TechKnowledge);
+  const ds = await getDataSource();
+  const techStackRepo = ds.getRepository("TechStack" as any);
+  const knowledgeRepo = ds.getRepository("TechKnowledge" as any);
 
     const techStack = await techStackRepo.findOne({ where: { id: params.id } });
     if (!techStack) {

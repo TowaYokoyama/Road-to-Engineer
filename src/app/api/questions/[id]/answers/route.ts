@@ -1,7 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getDataSource } from "@/lib/db";
-import { Answer } from "@/entities/Answer";
-import { Question } from "@/entities/Question";
 
 
 export async function POST(
@@ -9,9 +7,9 @@ export async function POST(
   { params }: { params: { id: string } }
 ) {
   try {
-    const dataSource = await getDataSource();
-    const questionRepo = dataSource.getRepository(Question);
-    const answerRepo = dataSource.getRepository(Answer);
+  const dataSource = await getDataSource();
+  const questionRepo = dataSource.getRepository("Question" as any);
+  const answerRepo = dataSource.getRepository("Answer" as any);
 
     const question = await questionRepo.findOne({ where: { id: params.id } });
     if (!question) {
@@ -51,8 +49,8 @@ export async function GET(
   { params }: { params: { id: string } }
 ) {
   try {
-    const dataSource = await getDataSource();
-    const answerRepo = dataSource.getRepository(Answer);
+  const dataSource = await getDataSource();
+  const answerRepo = dataSource.getRepository("Answer" as any);
 
     const answers = await answerRepo.find({
       where: { question: { id: params.id } },

@@ -1,13 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getDataSource } from "@/lib/db";
-import { TechStack } from "@/entities/TechStack";
 
 export const dynamic = "force-dynamic";
 
 export async function GET(_req: NextRequest, { params }: { params: { id: string } }) {
   try {
-    const ds = await getDataSource();
-    const repo = ds.getRepository(TechStack);
+  const ds = await getDataSource();
+  const repo = ds.getRepository("TechStack" as any);
     
     const found = await repo.findOne({
       where: { id: params.id },
@@ -27,8 +26,8 @@ export async function GET(_req: NextRequest, { params }: { params: { id: string 
 
 export async function PUT(req: NextRequest, { params }: { params: { id: string } }) {
   try {
-    const ds = await getDataSource();
-    const repo = ds.getRepository(TechStack);
+  const ds = await getDataSource();
+  const repo = ds.getRepository("TechStack" as any);
     const body = await req.json();
     
     await repo.update({ id: params.id }, body);
@@ -43,8 +42,8 @@ export async function PUT(req: NextRequest, { params }: { params: { id: string }
 
 export async function DELETE(_req: NextRequest, { params }: { params: { id: string } }) {
   try {
-    const ds = await getDataSource();
-    const repo = ds.getRepository(TechStack);
+  const ds = await getDataSource();
+  const repo = ds.getRepository("TechStack" as any);
     await repo.delete({ id: params.id });
     
     return NextResponse.json({ ok: true });

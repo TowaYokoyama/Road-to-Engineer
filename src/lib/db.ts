@@ -1,5 +1,6 @@
 import "reflect-metadata";
 import { DataSource } from "typeorm";
+import path from "path";
 
 const isProd = process.env.NODE_ENV === "production";
 const hasDb = !!process.env.DATABASE_URL;
@@ -12,30 +13,25 @@ if (!hasDb) {
 // Avoid creating multiple DataSource instances in dev HMR
 const globalForDataSource = globalThis as unknown as { orm?: DataSource | null };
 
+// To avoid circular imports we register entities by file pattern (strings)
+// instead of importing entity classes here. This allows TypeORM to load
+// entity definitions lazily and prevents import cycles between entities and db.
+const entitiesPath = [path.join(__dirname, "../entities/*.{ts,js}")];
+
 export const AppDataSource: DataSource | null = hasDb
   ? (globalForDataSource.orm !== undefined
     ? globalForDataSource.orm
     : (() => {
-        // エンティティを動的にインポート（DATABASE_URLがある場合のみ）
-        const { GithubRepo } = require("../entities/GithubRepo");
-        const { TechNote } = require("../entities/TechNote");
-        const { Question } = require("../entities/Question");
-        const { TechStack } = require("../entities/TechStack");
-        const { Answer } = require("../entities/Answer");
-        const { TechKnowledge } = require("../entities/TechKnowledge");
-        const { Review } = require("../entities/Review");
-        
-        const entities = [GithubRepo, TechNote, Question, TechStack, Answer, TechKnowledge, Review];
-        
         const ds = new DataSource({
           type: "postgres",
           url: process.env.DATABASE_URL!,
+          // Supabase requires SSL; when running in production, allow self-signed certs
           ssl: isProd ? { rejectUnauthorized: false } : false,
           synchronize: true, // 本番環境ではfalseにする
           logging: false,
-          entities,
+          entities: entitiesPath,
         });
-        
+
         globalForDataSource.orm = ds;
         return ds;
       })())

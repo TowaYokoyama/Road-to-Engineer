@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getDataSource } from "@/lib/db";
-import { Question } from "@/entities/Question";
 
 
 export const dynamic = "force-dynamic";
@@ -11,7 +10,7 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ questions: [], total: 0 });
   }
   const ds = await getDataSource();
-  const repo = ds.getRepository(Question);
+  const repo = ds.getRepository("Question" as any);
   const url = new URL(req.url);
   const q = url.searchParams.get("q")?.toLowerCase();
   const [items, total] = await repo.findAndCount({ order: { createdAt: "DESC" } });
@@ -30,7 +29,7 @@ export async function POST(req: NextRequest) {
   }
   const body = await req.json();
   const ds = await getDataSource();
-  const repo = ds.getRepository(Question);
+  const repo = ds.getRepository("Question" as any);
   const entity = repo.create(body);
   const saved = await repo.save(entity);
   return NextResponse.json(saved, { status: 201 });
